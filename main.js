@@ -1,11 +1,9 @@
-const { addMembersToDB } = require("./Models/membersBL");
-const { addMoviesToDB } = require("./Models/moviesBL");
 
 
 const express = require('express');
-const moviesRouter = require('./routers/moviesRouter');
-const membersRouter = require('./routers/membersRouters');
-const subscriptionRouter = require('./routers/subscriptionsRouter');
+const loginRouter = require('./routers/loginRouter');
+const usersRouter = require('./routers/usersRouter');
+
 const cors = require('cors');
 const app = express();
 
@@ -16,16 +14,13 @@ app.use(express.urlencoded({ extended: false }));
 
 require('./configs/database');
 
-app.use('/api/movies', moviesRouter);
-app.use('/api/members', membersRouter);
-app.use('/api/subscriptions', subscriptionRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/login', loginRouter);
+
 
 app.listen(8000);
 
 
-initDB = async function () {
-    await addMembersToDB();
-    await addMoviesToDB();
-}
+
 
 

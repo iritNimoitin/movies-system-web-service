@@ -26,6 +26,16 @@ router.route('/:id')
         }
 
     })
+router.route('/exist/:id')
+    .get(async (req, resp) => {
+        try {
+            let data = await movieBL.CheckIfMovieExist(req.params.id);
+            return resp.json(data);
+        } catch (err) {
+            return resp.json(err);
+        }
+
+    })
 
 router.route('/')
     .post(async (req, resp) => {
